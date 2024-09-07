@@ -35,8 +35,10 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Obstacle")
         {
-            Debug.Log("Game Over");
+            // Debug.Log("Game Over");
             // Tambahkan logic untuk mengakhiri game
+            // Memanggil fungsi GameOver dari GameManager
+            GameManager.instance.GameOver();
         }
     }
 }
