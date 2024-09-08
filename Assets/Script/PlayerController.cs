@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
+    [SerializeField] public float leftRightSpeed = 4;
     public Rigidbody rb;
     private bool isGrounded;
 
@@ -23,6 +24,22 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGrounded = false;
+        }
+
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            if(this.gameObject.transform.position.x > LevelBoundary.leftSide)
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed);
+            }
+        }
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            if (this.gameObject.transform.position.x < LevelBoundary.rightSide)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * leftRightSpeed);
+            }
         }
     }
 

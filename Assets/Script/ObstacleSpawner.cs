@@ -30,7 +30,7 @@ public class ObstacleSpawner : MonoBehaviour
         // Tentukan posisi y sesuai dengan obstacle yang dipilih
         float spawnY = 1f; // Default posisi y
         if (index == 0) spawnY = 0.5f;   // Obstacle1: y = 1
-        else if (index == 1) spawnY = 2.5f; // Obstacle2: y = 2
+        else if (index == 1) spawnY = 2.7f; // Obstacle2: y = 2
 
         // Atur posisi obstacle
         obstacle.transform.position = new Vector3(spawnX, spawnY, spawnZ);
