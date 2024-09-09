@@ -5,11 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject mainMenuUI; // Referensi ke panel UI Main Menu
+    [SerializeField] public GameObject winPanel;
     public static GameManager instance;
     public GameObject gameOverPanel;
 
     void Awake()
     {
+        // Pause game saat dimulai
+        Time.timeScale = 0f;
+
+        // Tampilkan UI Main Menu
+        mainMenuUI.SetActive(true);
+
         if (instance == null)
         {
             instance = this;
@@ -27,31 +35,50 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    // BLM BISA NGILANGIN UI MAIN MENU, MASA HRS MENCET START DLU
     public void RestartGame()
     {
-        // Mengembalikan waktu ke normal
-        Time.timeScale = 1f;
         // Muat ulang scene saat ini
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        // Menyembunyikan UI Main Menu
+        mainMenuUI.SetActive(false);
+
+        // Mengembalikan waktu ke normal
+        Time.timeScale = 1f;
     }
 
     public void ReturnToMainMenu()
     {
         // Mengembalikan waktu ke normal
         Time.timeScale = 1f;
-        // Muat scene main menu, pastikan Anda telah menambahkannya ke Build Settings
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ExitGame()
     {
-        Debug.Log("Game is exiting..."); // Ini hanya untuk memastikan bahwa fungsi dipanggil saat testing di editor
+        Debug.Log("Game is exiting...");
         Application.Quit(); // Fungsi untuk menutup aplikasi
     }
 
     public void StartGame()
     {
-        // Muat scene permainan, pastikan scene permainan ada di Build Settings
-        SceneManager.LoadScene("MainScene");
+        // Menyembunyikan UI Main Menu
+        mainMenuUI.SetActive(false);
+
+        // Melanjutkan game
+        Time.timeScale = 1f;
+
+        // Menyembunyikan Win Panel
+        winPanel.SetActive(false);
+    }
+
+    public void WinGame()
+    {
+        // Menghentikan game
+        Time.timeScale = 0f;
+
+        // Menampilkan Win Panel
+        winPanel.SetActive(true);
     }
 }
