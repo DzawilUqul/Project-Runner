@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstacles;
-    public float spawnTime = 2f;
+    [SerializeField] private float spawnTime = 2f;
     private float timer;
 
     void Update()

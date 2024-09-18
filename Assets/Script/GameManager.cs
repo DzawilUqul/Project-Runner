@@ -5,21 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public GameObject winPanel;
-    public static GameManager instance;
-    public GameObject gameOverPanel;
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject gameOverPanel;
 
     public void GameOver()
     {

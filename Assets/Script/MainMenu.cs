@@ -9,12 +9,12 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        // mainMenu.SetActive(false);
         Time.timeScale = 1f;
     }
 
     public void ExitGame()
     {
+        Debug.Log("Game is exiting...");
         Application.Quit();
     }
 }

@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
-    [SerializeField] public float leftRightSpeed = 4;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float leftRightSpeed = 4;
     public Rigidbody rb;
     private bool isGrounded;
+    public GameManager gameManager;
+    [SerializeField] private float leftSide;
+    [SerializeField] private float rightSide;
 
     void Start()
     {
@@ -28,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            if(this.gameObject.transform.position.x > LevelBoundary.leftSide)
+            if (this.gameObject.transform.position.x > leftSide)
             {
                 transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed);
             }
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            if (this.gameObject.transform.position.x < LevelBoundary.rightSide)
+            if (this.gameObject.transform.position.x < rightSide)
             {
                 transform.Translate(Vector3.right * Time.deltaTime * leftRightSpeed);
             }
@@ -52,10 +55,8 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.tag == "Obstacle")
         {
-            // Debug.Log("Game Over");
-            // Tambahkan logic untuk mengakhiri game
             // Memanggil fungsi GameOver dari GameManager
-            GameManager.instance.GameOver();
+            gameManager.GameOver();
         }
     }
 }
