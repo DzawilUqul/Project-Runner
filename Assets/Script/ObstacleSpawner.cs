@@ -28,9 +28,9 @@ public class ObstacleSpawner : MonoBehaviour
         float spawnZ = transform.position.z;
 
         // Tentukan posisi y sesuai dengan obstacle yang dipilih
-        float spawnY = 1f; // Default posisi y
-        if (index == 0) spawnY = 0.5f;   // Obstacle1: y = 1
-        else if (index == 1) spawnY = 2.7f; // Obstacle2: y = 2
+        float spawnY = 0f; // Default posisi y
+        if (index == 0) spawnY = 0f;   // Obstacle1: y = 1
+        else if (index == 1) spawnY = 0f; // Obstacle2: y = 2
 
         // Atur posisi obstacle
         obstacle.transform.position = new Vector3(spawnX, spawnY, spawnZ);

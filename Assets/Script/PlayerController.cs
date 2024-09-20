@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
-    [SerializeField] private float leftRightSpeed = 4;
+    [SerializeField] private float leftRightSpeed;
     public Rigidbody rb;
     private bool isGrounded;
     public GameManager gameManager;
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         {
             if (this.gameObject.transform.position.x > leftSide)
             {
-                transform.Translate(Vector3.left * Time.deltaTime * leftRightSpeed);
+                transform.position += new Vector3(-leftRightSpeed * Time.deltaTime, 0, 0);
             }
         }
 
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             if (this.gameObject.transform.position.x < rightSide)
             {
-                transform.Translate(Vector3.right * Time.deltaTime * leftRightSpeed);
+                transform.position += new Vector3(leftRightSpeed * Time.deltaTime, 0, 0);
             }
         }
     }
