@@ -8,9 +8,15 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float spawnTime;
     [SerializeField] private Transform spawnLocation;
     private float timer;
+    private bool collidedFinish = false;
 
     void Update()
     {
+        if (collidedFinish)
+        {
+            return;  // Jika sudah bertabrakan, hentikan spawning
+        }
+
         timer += Time.deltaTime;
         if (timer >= spawnTime)
         {
@@ -36,5 +42,12 @@ public class ObstacleSpawner : MonoBehaviour
 
         // Atur posisi obstacle
         obstacle.transform.position = new Vector3(spawnX, spawnY, spawnZ);
+    }
+
+    // Panggil ini dari OnTriggerEnter di FinishSpawner
+    public void OnPlayerCollidedWithFinish()
+    {
+        collidedFinish = true;  // Set flag menjadi true
+        Debug.Log("Player collided with FinishSpawner.");
     }
 }
